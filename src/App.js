@@ -1,5 +1,7 @@
 import React from "react";
-import {vehicles} from "./vehiclesData";
+import { Vehicle } from "./components/Vehicle";
+import { vehicles } from "./vehiclesData";
+
 
 function normalizeArray(vehicles) {
     const normalized = [];
@@ -18,9 +20,14 @@ export default class App extends React.Component {
         vehicles: [],
     };
     componentDidMount() {
-        this.setState({vehicles: normalizeArray(vehicles)});
+        this.setState({ vehicles: normalizeArray(vehicles) });
     }
     render() {
-        return <div></div>;
+        return (
+            <div className="container">
+                {this.state.vehicles.map(vehicle =>(
+                    <Vehicle brand={vehicle.brand}  model={vehicle.model} engine={vehicle.engine} year={vehicle.year} />
+                ))}
+            </div>);
     }
 }
