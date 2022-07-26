@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {vehicles} from "./vehiclesData";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function normalizeArray(vehicles) {
+    const normalized = [];
+    vehicles.forEach((vehicle) => {
+        if (Array.isArray(vehicle)) {
+            normalized.push(...vehicle);
+        } else {
+            normalized.push(vehicle);
+        }
+    });
+    return normalized;
 }
 
-export default App;
+export default class App extends React.Component {
+    state = {
+        vehicles: [],
+    };
+    componentDidMount() {
+        this.setState({vehicles: normalizeArray(vehicles)});
+    }
+    render() {
+        return <div></div>;
+    }
+}
